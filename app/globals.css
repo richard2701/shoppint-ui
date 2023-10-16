@@ -3,25 +3,66 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --fg: #000;
+  --bg: #fff;
+  color-scheme: dark;
+  background-color: darkgray;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  color-scheme: dark;
+  --fg: #fff;
+  --bg: #000;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: 'Lobster';
+}
+.toggle-button {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.toggle-button:hover {
+  background-color: lightgray;
+}
+
+.dark .toggle-button {
+  background-color: black;
+  color: white;
+}
+
+.dark .toggle-button:hover {
+  background-color: darkgray;
+}
+
+.dark {
+  background-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: --dark;
+  }
+}
+
+.text-enters {
+  animation: slide-in-from-right 1s ease-in-out;
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
