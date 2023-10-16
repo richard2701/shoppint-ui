@@ -26,11 +26,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={raleway.className}>
+        <header>
+          <Navbar />
+          <HeaderHome />
+        </header>
         <Providers>
-          <header>
-            <Navbar />
-            <HeaderHome />
-          </header>
           <main>{children}</main>
         </Providers>
       </body>
