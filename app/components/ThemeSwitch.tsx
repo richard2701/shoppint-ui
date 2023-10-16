@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import Sun from '../icons/Sun'
 import Moon from '../icons/Moon'
-import darkMode from '../js/darkMode'
 
-const getTheme = darkMode()
+const getTheme = typeof window !== 'undefined' ? localStorage : null
+console.log(getTheme)
 const initialTheme = getTheme?.getItem('theme') === 'dark' ? 'dark' : 'light'
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
@@ -11,13 +11,21 @@ const ThemeSwitch = () => {
 
   useEffect(() => {
     setMounted(true)
-  }, [setTheme, theme])
+    if (theme === 'dark' || theme === 'system') {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
+  }, [theme])
 
   if (!mounted) {
     return null
   }
 
   const toggleTheme = () => {
+    console.log(theme)
     if (theme === 'dark' || theme === 'system') {
       document.documentElement.classList.add('dark')
       localStorage.setItem('theme', 'dark')
