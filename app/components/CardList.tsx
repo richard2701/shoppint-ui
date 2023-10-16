@@ -1,5 +1,5 @@
 import { Card } from './Card'
-import { LoadMoreButton } from './LoadMoreButton.tsx'
+import { LoadMoreButton } from './LoadMoreButton'
 type CardData = {
   id: number,
   attributes: {
