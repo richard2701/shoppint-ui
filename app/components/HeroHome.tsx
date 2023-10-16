@@ -1,3 +1,4 @@
+'use client'
 import styles from './HeroHome.module.css'
 
 export default function HeaderHome() {

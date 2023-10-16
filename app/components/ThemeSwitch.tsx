@@ -1,46 +1,40 @@
-import { useEffect, useState } from 'react'
+'use client'
+
+import { useTheme } from 'next-themes'
 import Sun from '../icons/Sun'
 import Moon from '../icons/Moon'
 
-const getTheme = typeof window !== 'undefined' ? localStorage : null
-console.log(getTheme)
-const initialTheme = getTheme?.getItem('theme') === 'dark' ? 'dark' : 'light'
 const ThemeSwitch = () => {
-  const [mounted, setMounted] = useState(false)
-  const [theme, setTheme] = useState(initialTheme)
+  const { systemTheme, theme, setTheme } = useTheme()
 
-  useEffect(() => {
-    setMounted(true)
-    if (theme === 'dark' || theme === 'system') {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
+  const renderThemeChanger = () => {
+    const currentTheme = theme === 'system' ? systemTheme : theme
+
+    if (currentTheme === 'dark') {
+      return (
+        <button onClick={() =>
+          setTheme('light')}
+        >
+          <Sun
+            color='#db9b04'
+          />
+        </button>
+      )
     } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
-  }, [theme])
-
-  if (!mounted) {
-    return null
-  }
-
-  const toggleTheme = () => {
-    console.log(theme)
-    if (theme === 'dark' || theme === 'system') {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-      setTheme('light')
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-      setTheme('dark')
+      return (
+        <button onClick={() =>
+          setTheme('dark')}
+        >
+          <Moon
+            color='text-blue-600 hover:text-amber-700'
+          />
+        </button>
+      )
     }
   }
   return (
     <>
-      <button onClick={toggleTheme}>
-        {theme === 'dark' || theme === 'system' ? <Sun color='#db9b04' /> : <Moon color='text-blue-600 hover:text-amber-700' />}
-      </button>
+      {renderThemeChanger()}
     </>
   )
 }

@@ -1,9 +1,9 @@
 import './globals.css'
 import React from 'react'
+import Provider from './Provider'
 import type { Metadata } from 'next'
 import { Raleway } from 'next/font/google'
 import { Navbar } from './components/Navbar'
-import Providers from './Providers'
 import HeaderHome from './components/HeroHome'
 
 const raleway = Raleway({
@@ -24,15 +24,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='en'>
-      <body className={raleway.className} suppressHydrationWarning>
-        <header>
-          <Navbar />
-          <HeaderHome />
-        </header>
-        <Providers>
+    <html lang='en' className='dark'>
+      <body className={raleway.className}>
+        <Provider>
+          <header>
+            <Navbar />
+            <HeaderHome />
+          </header>
           <main>{children}</main>
-        </Providers>
+        </Provider>
       </body>
     </html>
   )
