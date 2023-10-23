@@ -3,7 +3,7 @@ import Sun from '../icons/Sun'
 import Moon from '../icons/Moon'
 
 const getTheme = typeof window !== 'undefined' ? localStorage : null
-console.log(getTheme)
+
 const initialTheme = getTheme?.getItem('theme') === 'dark' ? 'dark' : 'light'
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
@@ -39,7 +39,7 @@ const ThemeSwitch = () => {
   return (
     <>
       <button onClick={toggleTheme}>
-        {theme === 'dark' || theme === 'system' ? <Sun color='#db9b04' /> : <Moon color='text-blue-600 hover:text-amber-700' />}
+        {theme === 'dark' || theme === 'system' ? <Sun color='text-orange-500 hover:text-blue-800' /> : <Moon color='text-blue-600 hover:text-amber-700' />}
       </button>
     </>
   )

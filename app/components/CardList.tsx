@@ -5,18 +5,24 @@ type CardData = {
   attributes: {
     product: string,
     price: number,
-    available: number
+    available: number,
+    description: string,
+    image: {
+      data: []
+    },
+    url: string,
   }
 }
 
-const FetchData = (page: number = 2) => {
-  return fetch(`https://api-demo-strapi.onrender.com/api/products?pagination[page]=${page}`)
+const FetchData = (page: number = 1) => {
+  return fetch(`https://api-demo-strapi.onrender.com/api/products?pagination[page]=${page}&populate=*`)
     .then((res) => res.json())
 }
 
 export default async function CardList() {
-  const res = await FetchData(2)
+  const res = await FetchData(1)
   const data: CardData[] = res.data
+  console.log(res.data)
   const page = res.meta.pagination.page
 
   return (
