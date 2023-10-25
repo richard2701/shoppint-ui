@@ -38,7 +38,7 @@ export function Navbar() {
   }
 
   return (
-    <nav className={`w-full flex p-4 items-center dark:border-gray-200 z-10 navbar-scroll shadow-md ${isCollapsed && 'dark:bg-gray-900 bg-white'} ${isScrolled ? 'bg-white dark:border-gray-200 dark:bg-gray-900 fixed w-full' : 'bg-transparent absolute'}`}>
+    <nav className={`w-full flex p-4 items-center dark:border-gray-200 z-40 navbar-scroll shadow-md ${isCollapsed && 'dark:bg-gray-900 bg-white'} ${isScrolled ? 'bg-white dark:border-gray-200 dark:bg-gray-900 fixed w-full' : 'bg-transparent absolute'}`}>
       <div className='container mx-auto'>
         <div className='flex flex-wrap items-center mx-auto relative'>
           <div>

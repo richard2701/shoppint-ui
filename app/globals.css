@@ -52,6 +52,13 @@ body {
   transition: background-color 0.2s ease-in-out;
 }
 
+.has-tooltip:hover .tooltip {
+  display: flex;
+}
+
+.has-tooltip:hover .icon-tabler-heart {
+  fill: #dc2626;
+}
 
 @media (prefers-color-scheme: dark) {
   body {

@@ -1,57 +1,19 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import Heart from '../icons/Heart'
+import { CardData, ImageCover } from '../types'
 
-interface formats {
-  url: string | null | undefined
-  formats: {
-    thumbnail: {
-      ext: string
-      url: string | null | undefined
-      hash: string
-      mime: string
-      name: string
-      path: any
-      size: number
-      width: number | null | undefined
-      height: number | null | undefined
-    }
-  }
-}
-interface ImageCover {
-  data: [
-    attributes: {
-      [x: string]: formats,
-    }
-  ]
-}
-
-type CardProps = {
-  id: number,
-  attributes: {
-    product: string
-    price: number
-    status: string
-    available: number
-    createdAt: string
-    updatedAt: string
-    publishedAt: string
-    locale: string
-    slug?: string
-    image: ImageCover
-  }
-}
-
-export function Card({ id, attributes }: CardProps) {
+export function Card({ id, attributes }: CardData) {
   const { product, price, image } = attributes
   const { data } = image as ImageCover
   const urlImage = data && data[0].attributes.url ? data[0].attributes.url : 'https://via.placeholder.com/500x500.png?text=No+Image'
-  console.log(data[0].attributes.url)
   return (
 
-    <article className='max-w-sm relative bg-white rounded-lg shadow dark:bg-gray-800 flex flex-col'>
-      <span className='absolute right-px text-red-600'>
-        heart
-      </span>
+    <article className='max-w-sm relative bg-white rounded-lg shadow dark:bg-gray-800 flex flex-col hover:-translate-y-1 transition-all hover:shadow-lg'>
+      <button className='absolute right-2 top-2 w-10 h-10 bg-rose-300 lg:bg-transparent has-tooltip transition-all hover:w-max hover:right-[11px] hover:top-4 flex justify-center items-center hover:bg-rose-300 hover:rounded-lg hover:p-2'>
+        <span className='tooltip flex lg:hidden rounded text- p-1 text-white font-semibold whitespace-nowrap'>add wish list</span>
+        <Heart color='text-red-600 hover:fill-red-600' width='30' height='30' />
+      </button>
       <div className='w-full mx-full overflow-hidden'>
         <Link href={`/${id}`} className='block overflow-hidden rounded-t-lg'>
           <Image
