@@ -9,9 +9,9 @@ export function Card({ id, attributes }: CardData) {
   const urlImage = data && data[0].attributes.url ? data[0].attributes.url : 'https://via.placeholder.com/500x500.png?text=No+Image'
   return (
 
-    <article className='max-w-sm relative bg-white rounded-lg shadow dark:bg-gray-800 flex flex-col hover:-translate-y-1 transition-all hover:shadow-lg'>
-      <button className='absolute right-2 top-2 w-10 h-10 bg-rose-300 lg:bg-transparent has-tooltip transition-all hover:w-max hover:right-[11px] hover:top-4 flex justify-center items-center hover:bg-rose-300 hover:rounded-lg hover:p-2'>
-        <span className='tooltip flex lg:hidden rounded text- p-1 text-white font-semibold whitespace-nowrap'>add wish list</span>
+    <article className='card-product max-w-sm relative bg-white rounded-lg shadow dark:bg-gray-800 flex flex-col hover:-translate-y-1 transition-all hover:shadow-lg overflow-hidden'>
+      <button className='absolute z-40 right-2 rounded-lg top-2 p-2 h-10 lg:bg-transparent has-tooltip transition-all hover:w-max hover:right-[11px] hover:top-4 flex justify-center items-center hover:bg-rose-300'>
+        <span className='tooltip hidden rounded text- p-1 text-white font-semibold whitespace-nowrap'>add wish list</span>
         <Heart color='text-red-600 hover:fill-red-600' width='30' height='30' />
       </button>
       <div className='w-full mx-full overflow-hidden'>
@@ -22,7 +22,7 @@ export function Card({ id, attributes }: CardData) {
             height={200}
             alt={product}
             blurDataURL='data:image/jpeg...'
-            className='object-cover w-full  object-center'
+            className='object-cover w-full object-center transition-transform'
           />
         </Link>
       </div>

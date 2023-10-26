@@ -28,9 +28,17 @@ export function Navbar() {
   const [isCollapsed, setIsCollapsed] = useState(false)
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       setIsScrolled(window.scrollY > 0)
-    })
+    }
+
+    // Agregar el listener de scroll si el ancho de la pantalla es mayor a 768px (puedes ajustar este valor)
+    window.addEventListener('scroll', handleScroll)
+
+    // Limpieza del listener cuando el componente se desmonte
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
   const handleCollapseToggle = () => {
     document.body.classList.toggle('overflow-hidden')
@@ -92,8 +100,8 @@ export function Navbar() {
                 if (route === '/shopping-cart') {
                   return (
                     <div key={label} className='flex items-center'>
-                      <Link href={route} className={`flex py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 ${isActive ? 'dark:text-blue-600' : 'dark:text-white text-slate-900'}`}>
-                        <ShoppingCart color={isActive ? ' text-blue-600' : 'text-slate-900 dark:text-white hover:text-blue-600'} />
+                      <Link href={route} className={`flex py-2 pl-3 pr-4 rounded lg:bg-transparent lg:p-0 ${isActive ? 'dark:text-blue-600' : 'dark:text-white text-slate-900 '}`}>
+                        <ShoppingCart color={isActive ? ' text-blue-600' : isScrolled && !isActive ? 'text-slate-900 dark:text-white' : 'text-white dark:text-white hover:text-blue-600'} />
                       </Link>
                     </div>
                   )
